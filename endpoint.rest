@@ -4,8 +4,8 @@ POST {{apiURL}}/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "matheusdsrwerewda",
-    "email": "ayrton12werwr3adsada@example.com",
-    "username": "mtcasawerwersdatro",
-    "password" : "1234sawerwerewdssaenha"
+    "name": "matheadusdsrweredasdwda",
+    "email": "ayrdawdaton12werwr3asdadsada@example.com",
+    "username": "mtcawdaasdsadawerwersdatro",
+    "password" : "123aw4sawerwerewdsasdsaenha"
 }

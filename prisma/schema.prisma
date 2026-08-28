@@ -6,6 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  // Necessario para poder passar um driver adapter (pg) ao PrismaClient
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -19,13 +21,15 @@ enum USER_ROLE {
 }
 
 model User {                                                                                                                                                             
-      id           String    @id @default(uuid())                                                                                                                            
+      id           Int    @id @default(autoincrement())    
+      publicId     String    @unique @map("public_id") @default(uuid())                                                                                                                          
       name         String                                                                                                                                                    
       username     String    @unique                                                                                                                                         
       email        String    @unique                                                                                                                                         
       passwordHash String                                                                                                                                                    
       role         USER_ROLE @default(DEFAULT)                                                                                                                               
-      createdAt    DateTime  @default(now())                                                                                                                                 
+      createdAt    DateTime  @default(now())
+      updatedAt    DateTime  @default(now())                                                                                                                                 
                                                                                                                                                                              
       @@map("users")                                                                                                                                                         
     }    

@@ -1,9 +1,10 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ["src"],
-  format: ["esm"],
-  outDir: "build",
+  // `src` é uma pasta; o bundler precisa do arquivo de entrada executável da aplicação.
+  entry: ['src/server.ts'],
+  format: ['esm'],
+  outDir: 'build',
   sourcemap: true,
-  target: "esnext",
-});
+  target: 'esnext',
+})

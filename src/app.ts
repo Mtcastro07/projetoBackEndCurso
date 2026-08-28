@@ -1,28 +1,17 @@
 import fastify from 'fastify'
-import { z } from 'zod'
-import { prisma } from './libs/prisma.js'
+import { routes } from './http/controller/routes.js'
+import { ZodError } from 'zod'
 
 export const app = fastify()
 
-app.post('/users', async (request, reply) => {
-  const registerBodySchema = z.object({
-    name: z.string(),
-    username: z.string(),
-    email: z.email().max(100),
-    password: z.string().min(8).regex(/[a-z]/),
-  })
+// Registra todas as rotas da aplicacao
+app.register(routes)
 
-  const { name, username, email, password } = registerBodySchema.parse(
-    request.body,
-  )
-
-  const user = await prisma.user.create({
-    data: {
-      name,
-      username,
-      email,
-      passwordHash: password,
-    },
-  })
-  return reply.status(201).send(user)
+app.setErrorHandler((error, request, reply) => {
+  if (error instanceof ZodError) {
+    return reply.status(400).send({
+      message: 'validation error',
+      issues: error.format(),
+    })
+  }
 })
