@@ -7,6 +7,6 @@ app
     port: env.PORT,
   })
   .then(() => {
-    const url = `https://localhost:${env.PORT}`
+    const url = `http://localhost:${env.PORT}`
     console.log(`HTTP Server Running at: ${url}`)
   })
